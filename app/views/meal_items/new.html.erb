@@ -1,0 +1,64 @@
+<!-- Validation failure messages -->
+<% if @meal_item.errors.any? %>
+  <% @meal_item.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Meal Item</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_meal_item" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for item_name -->
+      <div class="form-group">
+        <label for="item_name" class="control-label">
+          Item name
+        </label>
+
+        <input type="text" id="item_name" name="item_name" placeholder="Item name" class="form-control" value="<%= @meal_item.item_name %>">
+      </div>
+
+      <!-- Label and input for picture -->
+      <div class="form-group">
+        <label for="picture" class="control-label">
+          Picture
+        </label>
+
+        <input type="text" id="picture" name="picture" placeholder="Picture" class="form-control" value="<%= @meal_item.picture %>">
+      </div>
+
+      <!-- Label and input for price -->
+      <div class="form-group">
+        <label for="price" class="control-label">
+          Price
+        </label>
+
+        <input type="text" id="price" name="price" placeholder="Price" class="form-control" value="<%= @meal_item.price %>">
+      </div>
+
+      <!-- Label and input for order_id -->
+      <div class="form-group">
+        <label for="order_id" class="control-label">
+          Order
+        </label>
+
+        <input type="text" id="order_id" name="order_id" placeholder="Order" class="form-control" value="<%= @meal_item.order_id %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Meal Item
+      </button>
+      or
+      <a href="/meal_items">Cancel</a>
+    </form>
+  </div>
+</div>
